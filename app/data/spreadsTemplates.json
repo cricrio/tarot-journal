@@ -1,0 +1,40 @@
+[
+  {
+    "id": "0",
+    "name": "Default template",
+    "slots": []
+  },
+  {
+    "id": "1",
+    "name": "Énergies du jour",
+    "slots": [
+      { "title": "Matin ", "subtitle": "majeur", "position": 1 },
+      { "title": "Matin ", "subtitle": "mineur", "position": 2 },
+      { "title": "Après-midi ", "subtitle": "majeur", "position": 3 },
+      { "title": "Après-midi ", "subtitle": "mineur", "position": 4 },
+      { "title": "Soirée ", "subtitle": "majeur", "position": 5 },
+      { "title": "Soirée ", "subtitle": "mineur", "position": 6 }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Spread relationnel",
+    "slots": [
+      { "title": "Ce que vous pensez de l'autre personne", "position": 1 },
+      { "title": "Ce que l'autre personne pense de vous", "position": 2 },
+      { "title": "Les forces présentes dans la relation", "position": 3 },
+      { "title": "Les obstacles présents dans la relation", "position": 4 },
+      { "title": "Où vous en êtes dans la relation", "position": 5 },
+      {
+        "title": "Les influences susceptibles de peser sur la relation",
+        "position": 6
+      },
+      { "title": "Résultat final de la relation", "position": 7 }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Test",
+    "slots": [{ "title": "Soirée ", "subtitle": "mineur", "position": 1 }]
+  }
+]
