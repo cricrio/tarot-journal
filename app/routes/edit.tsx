@@ -1,14 +1,15 @@
-import React from 'react';
 import type { Route } from './+types/edit';
 
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 
-import { CardList } from '~/components/cards/list';
+import { Grid, Row } from '~/components/cards/list';
 import { CardCanvas } from '~/components/cards/canvas';
-import { CardDetails } from '~/components/cards/details';
 import { AddCard } from '~/components/cards/add-cards';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
+import { addEntry } from '~/database/db';
+import { useState } from 'react';
+import { Card } from '~/components/cards/card';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -18,23 +19,37 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Edit() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const cardIds = searchParams.get('cards')?.split('-') || [];
   const name = searchParams.get('name') || '';
-
+  const [target, setTarget] = useState<string | null>(null);
   const setName = (name: string) =>
     setSearchParams((prev) => {
       prev.set('name', name);
       return prev;
     });
 
+  const onTargetClick = (id: unknown) => {
+    setTarget(id);
+  };
   const onAddCard = (id: string) =>
     setSearchParams((prev) => {
-      const newCards = `${prev.get('cards')}-${id}`;
+      const prevCards = prev.get('cards');
+      const newCards = prevCards ? `${prev.get('cards')}-${id}` : id;
       prev.set('cards', newCards);
       return prev;
     });
 
+  const onSave = async () => {
+    try {
+      const spreadId = await addEntry({ cards: cardIds, name });
+      console.log('Entry saved:', spreadId, `/spread/${spreadId}`);
+      navigate(`/spread/${spreadId}`);
+    } catch (error) {
+      console.error('Error saving entry:', error);
+    }
+  };
   return (
     <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
       <div className='flex justify-center'>
@@ -44,9 +59,29 @@ export default function Edit() {
           onChange={(event) => setName(event.target.value)}
         />
       </div>
-      <CardCanvas cards={<CardList cards={cardIds} />} />
+      <CardCanvas
+        cards={
+          <Grid
+            ids={cardIds}
+            renderRow={(rows, scale) =>
+              rows.map(({ ids, y }) => (
+                <Row
+                  y={y}
+                  items={ids}
+                  renderItem={({ x, id }) => (
+                    <Card scale={scale} position={[x, y, 0]} id={id} />
+                  )}
+                />
+              ))
+            }
+          />
+        }
+      />
       <div className='flex flex-col justify-center gap-4'>
         <AddCard cardIds={cardIds} onAddCard={onAddCard} />
+        <Button className='w-full mt-4' onClick={onSave}>
+          Enregistrer
+        </Button>
       </div>
     </div>
   );

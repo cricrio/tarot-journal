@@ -1,14 +1,56 @@
-import { Environment } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import type { ReactElement } from 'react';
+import {
+  CameraControls,
+  Environment,
+  MapControls,
+  OrbitControls,
+  PresentationControls,
+} from '@react-three/drei';
+import { Canvas, useThree } from '@react-three/fiber';
+import { useEffect, useRef, type ReactElement } from 'react';
+import { Vector3 } from 'three';
 
-export function CardCanvas({ cards }: { cards: ReactElement }) {
+export function CardCanvas({
+  cards,
+  target,
+}: {
+  cards: ReactElement;
+  target?: [x: number, y: number, z: number];
+}) {
+  console.log(target);
+  const cameraControlsRef = useRef<CameraControls>(null);
+  const targetRef = useRef();
+  useEffect(() => {
+    if (target && cameraControlsRef.current) {
+      if (target) {
+        cameraControlsRef.current.setLookAt(
+          target[0],
+          target[1],
+          1,
+          target[0],
+          target[1],
+          0,
+          true
+        );
+        console.log(
+          'Setting target:',
+          cameraControlsRef.current?.getTarget(new Vector3())
+        );
+        console.log(
+          'position:',
+          cameraControlsRef.current?.getPosition(new Vector3())
+        );
+      }
+    }
+  }, [target]);
+
   return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <fog attach='fog' args={['lightpink', 60, 100]} />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[0, -5, 0]} color='red' intensity={2} />
-      <Environment preset='warehouse' />
+    <Canvas>
+      <CameraControls
+        ref={cameraControlsRef}
+        dollySpeed={0}
+        azimuthRotateSpeed={0}
+        polarRotateSpeed={0}
+      />
       {cards}
     </Canvas>
   );

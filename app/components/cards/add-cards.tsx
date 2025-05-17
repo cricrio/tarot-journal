@@ -21,16 +21,20 @@ export function AddCard({
   const [suit, setSuit] = useState<string | null>(null);
   const [card, setCard] = useState<string | null>(null);
   return (
-    <div className='bg-yellow-50 rounded w-2xs text-black p-4'>
+    <div className='bg-yellow-50 rounded w-2xs text-black p-4 '>
       <h1 className='scroll-m-20 text-2xl font-semibold tracking-tight '>
         Ajouter une carte
       </h1>
       <form
+        className='flex flex-col gap-2'
         action={() => {
-          card && onAddCard(card);
+          if (!suit || !card) return;
+          setCard(null);
+          setSuit(null);
+          onAddCard(card);
         }}
       >
-        <Select onValueChange={(a) => console.log(a) || (a && setSuit(a))}>
+        <Select onValueChange={setSuit}>
           <SelectTrigger className='w-full'>
             <SelectValue placeholder='Sélectionner une suite' />
           </SelectTrigger>

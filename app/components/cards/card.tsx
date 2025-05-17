@@ -1,4 +1,5 @@
 import { Image } from '@react-three/drei';
+import { ratios } from '~/config';
 
 export const Card = ({
   position,
@@ -18,7 +19,7 @@ export const Card = ({
   <Image
     position={position}
     url={`/cards/${id}.jpg`}
-    scale={[1.75 * scale, 3 * scale]}
+    scale={[ratios.x * scale, ratios.y * scale]}
     {...(rotation ? { rotation: [0, 0, rotation] } : {})}
     onPointerOver={() => onHover?.(id)}
     onClick={() => onClick?.(id)}
