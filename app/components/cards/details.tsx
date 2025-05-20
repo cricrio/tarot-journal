@@ -4,7 +4,7 @@ export function CardDetails({ id }: { id: string }) {
   const card = data.find((card) => card.img.includes(id));
   if (!card) return null;
   return (
-    <div className='bg-yellow-50 rounded w-2xs text-black px-4 py-2 overflow-auto'>
+    <div className='rounded  text-black px-4 py-2 '>
       <div>
         <h1 className='scroll-m-20 text-2xl font-semibold tracking-tight '>
           {card.name}

@@ -71,48 +71,42 @@ export default function Spread() {
 
   return (
     <div className='h-full flex p-4 gap-8'>
-      <Drawer>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-            <DrawerDescription>This action cannot be undone.</DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter>
-            <Button>Submit</Button>
-            <DrawerClose>
-              <Button variant='outline'>Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-        <CardCanvas
-          cards={
-            <Grid
-              ids={cardIds}
-              renderRow={(rows, dimensions) =>
-                rows.map(({ ids, y }) => (
-                  <Row
-                    key={ids.join('-')}
-                    y={y}
-                    items={ids}
-                    dimensions={dimensions}
-                    renderItem={({ x, id }) => (
-                      <Card
-                        key={id}
-                        position={[x, y, 0]}
-                        id={id}
-                        dimensions={dimensions}
-                        onClick={() => onCardClick(id)}
-                      />
-                    )}
-                  />
-                ))
-              }
-            />
-          }
-        />
-      </Drawer>
-
-      {/* {selectedCard && <CardDetails id={selectedCard} />} */}
+      <CardCanvas
+        cards={
+          <Grid
+            ids={cardIds}
+            renderRow={(rows, dimensions) =>
+              rows.map(({ ids, y }) => (
+                <Row
+                  key={ids.join('-')}
+                  y={y}
+                  items={ids}
+                  dimensions={dimensions}
+                  renderItem={({ x, id }) => (
+                    <Card
+                      key={id}
+                      position={[x, y, 0]}
+                      id={id}
+                      dimensions={dimensions}
+                      onClick={() => onCardClick(id)}
+                    />
+                  )}
+                />
+              ))
+            }
+          />
+        }
+      />
+      {selectedCard && (
+        <Drawer
+          open={!!selectedCard}
+          onOpenChange={() => setSelectedCard(null)}
+        >
+          <DrawerContent>
+            <CardDetails id={selectedCard} />
+          </DrawerContent>
+        </Drawer>
+      )}
     </div>
   );
 }
