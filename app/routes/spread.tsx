@@ -2,7 +2,7 @@ import type { Route } from './+types/edit';
 
 import { useNavigate, useParams, useSearchParams } from 'react-router';
 
-import { CardList, Grid, Row } from '~/components/cards/list';
+import { Grid, Row } from '~/components/cards/list';
 import { CardCanvas } from '~/components/cards/canvas';
 import { CardDetails } from '~/components/cards/details';
 import { AddCard } from '~/components/cards/add-cards';
@@ -11,6 +11,16 @@ import { Button } from '~/components/ui/button';
 import { addEntry, getEntry } from '~/database/db';
 import { useEffect, useState } from 'react';
 import { Card } from '~/components/cards/card';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '~/components/ui/drawer';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -61,26 +71,48 @@ export default function Spread() {
 
   return (
     <div className='h-full flex p-4 gap-8'>
-      <CardCanvas
-        cards={
-          <Grid
-            ids={cardIds}
-            renderRow={(rows, y, scale) =>
-              rows.map((ids) => (
-                <Row
-                  y={y}
-                  items={ids}
-                  renderItem={({ x, scale, id }) => (
-                    <Card scale={scale} position={[x, 0, 0]} id={id} />
-                  )}
-                />
-              ))
-            }
-          />
-        }
-      />
+      <Drawer>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+            <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose>
+              <Button variant='outline'>Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+        <CardCanvas
+          cards={
+            <Grid
+              ids={cardIds}
+              renderRow={(rows, dimensions) =>
+                rows.map(({ ids, y }) => (
+                  <Row
+                    key={ids.join('-')}
+                    y={y}
+                    items={ids}
+                    dimensions={dimensions}
+                    renderItem={({ x, id }) => (
+                      <Card
+                        key={id}
+                        position={[x, y, 0]}
+                        id={id}
+                        dimensions={dimensions}
+                        onClick={() => onCardClick(id)}
+                      />
+                    )}
+                  />
+                ))
+              }
+            />
+          }
+        />
+      </Drawer>
 
-      {selectedCard && <CardDetails id={selectedCard} />}
+      {/* {selectedCard && <CardDetails id={selectedCard} />} */}
     </div>
   );
 }

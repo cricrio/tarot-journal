@@ -1,25 +1,36 @@
-import { useThree } from '@react-three/fiber';
+import { useThree, type Viewport } from '@react-three/fiber';
 import { Card } from './card';
 import type { ReactElement } from 'react';
 import { ratios } from '~/config';
 
-const width = 1.75;
 const margin = 0.1;
 const numberOfCardsperRow = 3;
 
-function center(count: number, viewportWidth: number) {
-  const scale = viewportWidth / (count * (width + margin));
-  const cardWidth = width * scale;
-  const totalWidth = count * cardWidth + (count - 1) * margin * scale;
-  const start = -totalWidth / 2 + cardWidth / 2;
-  return Array.from({ length: count }, (_, i) => {
-    return { x: start + i * (cardWidth + margin * scale), scale };
-  });
-}
+type Dimensions = {
+  width: number;
+  height: number;
+};
 
-function getScale(count: number, viewportWidth: number) {
-  const scale = viewportWidth / (count * (width + margin));
-  return scale;
+function getDimensions(
+  numberPerRow: number,
+  numberPerColumn: number,
+  viewport: Viewport
+): Dimensions {
+  const rowScale = viewport.width / (numberPerRow * (ratios.x + margin));
+  const columnScale =
+    (viewport.height * 0.9) / (numberPerColumn * (ratios.y + margin));
+
+  if (rowScale < columnScale) {
+    return {
+      width: rowScale * ratios.x,
+      height: rowScale * ratios.y,
+    };
+  }
+
+  return {
+    width: columnScale * ratios.x,
+    height: columnScale * ratios.y,
+  };
 }
 
 function getRows(ids: string[], count: number): string[][] {
@@ -33,9 +44,8 @@ function getRows(ids: string[], count: number): string[][] {
   }, []);
 }
 
-//TODO: Don't why it's working, need to rework scales
-function getY(index: number, count: number) {
-  return index * ratios.x - ((count - 1) * ratios.x) / 2;
+function getPosition(index: number, distance: number, count: number) {
+  return index * (distance + margin) - ((count - 1) * (distance + margin)) / 2;
 }
 
 export function Grid({
@@ -45,20 +55,37 @@ export function Grid({
   ids: string[];
   renderRow: (
     rows: { ids: string[]; y: number }[],
-    scale: number
-  ) => ReactElement;
+    dimensions: Dimensions
+  ) => ReactElement[];
 }) {
   const { viewport } = useThree();
-  const scale = getScale(3, viewport.width);
 
   if (ids.length <= numberOfCardsperRow) {
-    return renderRow([{ ids, y: 0 }], scale);
+    const dimensions = getDimensions(3, 1, viewport);
+    return renderRow([{ ids, y: 0 }], dimensions);
   }
+
+  if (ids.length == 5) {
+    const dimensions = getDimensions(3, 3, viewport);
+    const rows = [[ids[0], ids[1]], [ids[2]], [ids[3], ids[4]]];
+    return renderRow(
+      rows.map((r, index) => ({
+        ids: r,
+        y: getPosition(index, dimensions.height, rows.length),
+      })),
+      dimensions
+    );
+  }
+
   const rows = getRows(ids, numberOfCardsperRow);
-  console.log('rows', rows);
+  const dimensions = getDimensions(3, rows.length, viewport);
+
   return renderRow(
-    rows.map((r, index) => ({ ids: r, y: getY(index, rows.length) })),
-    scale
+    rows.map((r, index) => ({
+      ids: r,
+      y: getPosition(index, dimensions.height, rows.length),
+    })),
+    dimensions
   );
 }
 
@@ -66,17 +93,16 @@ export function Row({
   items,
   renderItem,
   y = 0,
+  dimensions,
 }: {
   items: string[];
   y: number;
-  renderItem: (item: {
-    id: string;
-    x: number;
-    y: number;
-    scale: number;
-  }) => ReactElement;
+  dimensions: { width: number; height: number };
+  renderItem: (item: { id: string; x: number; y: number }) => ReactElement;
 }) {
-  const { viewport } = useThree();
-  const cards = center(items.length, viewport.width);
+  const cards = Array.from({ length: items.length }, (_, i) => ({
+    x: getPosition(i, dimensions.width, items.length),
+  }));
+
   return items.map((id, i) => renderItem({ id, ...cards[i], y }));
 }

@@ -63,13 +63,18 @@ export default function Edit() {
         cards={
           <Grid
             ids={cardIds}
-            renderRow={(rows, scale) =>
+            renderRow={(rows, dimensions) =>
               rows.map(({ ids, y }) => (
                 <Row
                   y={y}
                   items={ids}
+                  dimensions={dimensions}
                   renderItem={({ x, id }) => (
-                    <Card scale={scale} position={[x, y, 0]} id={id} />
+                    <Card
+                      position={[x, y, 0]}
+                      id={id}
+                      dimensions={dimensions}
+                    />
                   )}
                 />
               ))

@@ -18,7 +18,7 @@ export function CardCanvas({
 }) {
   console.log(target);
   const cameraControlsRef = useRef<CameraControls>(null);
-  const targetRef = useRef();
+
   useEffect(() => {
     if (target && cameraControlsRef.current) {
       if (target) {
