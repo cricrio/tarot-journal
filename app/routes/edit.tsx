@@ -55,7 +55,7 @@ export default function Edit() {
       <div className='flex justify-center'>
         <Input
           className='text-white'
-          value={name}
+          defaultValue={name}
           onChange={(event) => setName(event.target.value)}
         />
       </div>
