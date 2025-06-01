@@ -9,7 +9,7 @@ import { AddCard } from '~/components/cards/add-cards';
 import { Input } from '~/components/ui/input';
 import { Button } from '~/components/ui/button';
 import { addEntry, getEntry } from '~/database/db';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Card } from '~/components/cards/card';
 import {
   Drawer,
@@ -21,6 +21,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '~/components/ui/drawer';
+import { useCamera } from '@react-three/drei';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -30,11 +31,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Spread() {
+  const ref = useRef<>();
   const { id } = useParams();
   const [spread, setSpread] = useState();
   const [error, setError] = useState(null);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
-  const onCardClick = (id: string) => setSelectedCard(id);
+  const onCardDoubleClick = (id: string) => setSelectedCard(id);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,7 +90,7 @@ export default function Spread() {
                       position={[x, y, 0]}
                       id={id}
                       dimensions={dimensions}
-                      onClick={() => onCardClick(id)}
+                      onDoubleClick={() => onCardDoubleClick(id)}
                     />
                   )}
                 />
@@ -102,7 +104,7 @@ export default function Spread() {
           open={!!selectedCard}
           onOpenChange={() => setSelectedCard(null)}
         >
-          <DrawerContent>
+          <DrawerContent className='overflow-y-auto'>
             <CardDetails id={selectedCard} />
           </DrawerContent>
         </Drawer>

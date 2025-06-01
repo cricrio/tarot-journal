@@ -1,10 +1,4 @@
-import {
-  CameraControls,
-  Environment,
-  MapControls,
-  OrbitControls,
-  PresentationControls,
-} from '@react-three/drei';
+import { CameraControls } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber';
 import { useEffect, useRef, type ReactElement } from 'react';
 import { Vector3 } from 'three';
@@ -43,15 +37,5 @@ export function CardCanvas({
     }
   }, [target]);
 
-  return (
-    <Canvas>
-      <CameraControls
-        ref={cameraControlsRef}
-        dollySpeed={0}
-        azimuthRotateSpeed={0}
-        polarRotateSpeed={0}
-      />
-      {cards}
-    </Canvas>
-  );
+  return <Canvas>{cards}</Canvas>;
 }

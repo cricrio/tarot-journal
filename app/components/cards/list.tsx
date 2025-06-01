@@ -5,6 +5,7 @@ import { ratios } from '~/config';
 
 const margin = 0.1;
 const numberOfCardsperRow = 3;
+const maxWidth = 1.5;
 
 type Dimensions = {
   width: number;
@@ -20,16 +21,13 @@ function getDimensions(
   const columnScale =
     (viewport.height * 0.9) / (numberPerColumn * (ratios.y + margin));
 
-  if (rowScale < columnScale) {
-    return {
-      width: rowScale * ratios.x,
-      height: rowScale * ratios.y,
-    };
-  }
+  const minScale = Math.min(rowScale, columnScale);
+  const width = Math.min(minScale * ratios.x, maxWidth);
+  const height = (width * ratios.y) / ratios.x;
 
   return {
-    width: columnScale * ratios.x,
-    height: columnScale * ratios.y,
+    width,
+    height,
   };
 }
 
