@@ -31,7 +31,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Spread() {
-  const ref = useRef<>();
   const { id } = useParams();
   const [spread, setSpread] = useState();
   const [error, setError] = useState(null);
