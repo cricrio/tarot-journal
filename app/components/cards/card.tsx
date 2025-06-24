@@ -1,5 +1,6 @@
 import { Image } from '@react-three/drei';
 import { ratios } from '~/config';
+import { getCardImage } from '~/lib/data';
 
 export const Card = ({
   position,
@@ -20,7 +21,7 @@ export const Card = ({
 }) => (
   <Image
     position={position}
-    url={`/cards/${id}.jpg`}
+    url={getCardImage(id)}
     scale={[dimensions.width, dimensions.height]}
     {...(rotation ? { rotation: [0, 0, rotation] } : {})}
     onPointerOver={() => onHover?.(id)}

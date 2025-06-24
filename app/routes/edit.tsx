@@ -2,7 +2,7 @@ import type { Route } from './+types/edit';
 
 import { useNavigate, useSearchParams } from 'react-router';
 
-import { Grid, Row } from '~/components/cards/list';
+import { Grid, Row } from '~/components/cards/canvas-list';
 import { CardCanvas } from '~/components/cards/canvas';
 import { AddCard } from '~/components/cards/add-cards';
 import { Input } from '~/components/ui/input';

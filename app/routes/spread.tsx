@@ -1,27 +1,16 @@
 import type { Route } from './+types/edit';
 
-import { useNavigate, useParams, useSearchParams } from 'react-router';
+import { useParams } from 'react-router';
 
-import { Grid, Row } from '~/components/cards/list';
+import { Grid, Row } from '~/components/cards/canvas-list';
 import { CardCanvas } from '~/components/cards/canvas';
 import { CardDetails } from '~/components/cards/details';
-import { AddCard } from '~/components/cards/add-cards';
-import { Input } from '~/components/ui/input';
-import { Button } from '~/components/ui/button';
-import { addEntry, getEntry } from '~/database/db';
+
 import { useEffect, useRef, useState } from 'react';
 import { Card } from '~/components/cards/card';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '~/components/ui/drawer';
-import { useCamera } from '@react-three/drei';
+import { Drawer, DrawerContent } from '~/components/ui/drawer';
+import { getEntry } from '~/database/db';
+import CardList from '~/components/cards/list';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -71,7 +60,10 @@ export default function Spread() {
   const cardIds = spread.cards;
 
   return (
-    <div className='h-full flex p-4 gap-8'>
+    <div className='h-full  p-4 gap-8'>
+      <h1 className='text-white text-2xl mb-4 text-center'>
+        {spread.name || 'Untitled Spread'}
+      </h1>
       <CardCanvas
         cards={
           <Grid
@@ -98,6 +90,8 @@ export default function Spread() {
           />
         }
       />
+      <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
+      <CardList cardIds={cardIds} />
       {selectedCard && (
         <Drawer
           open={!!selectedCard}

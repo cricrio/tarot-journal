@@ -1,5 +1,5 @@
 import { CameraControls } from '@react-three/drei';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { useEffect, useRef, type ReactElement } from 'react';
 import { Vector3 } from 'three';
 
