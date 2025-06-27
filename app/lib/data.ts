@@ -1,4 +1,4 @@
-import data from '~/data/tarot-images.en.json';
+import data from '~/data/tarot-images.fr.json';
 
 export function getCardImage(id: string) {
   return `/cards/${id}.jpg`;
