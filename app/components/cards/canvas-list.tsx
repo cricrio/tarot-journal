@@ -65,7 +65,8 @@ export function Grid({
 
   if (ids.length == 5) {
     const dimensions = getDimensions(3, 3, viewport);
-    const rows = [[ids[0], ids[1]], [ids[2]], [ids[3], ids[4]]];
+    const rows = [[ids[3], ids[4]], [ids[2]], [ids[0], ids[1]]];
+    
     return renderRow(
       rows.map((r, index) => ({
         ids: r,
