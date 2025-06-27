@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react';
 
 import { getCardDetails, getCardImage } from '~/lib/data';
@@ -8,13 +9,15 @@ type CardListProps = {
 
 export const CardList: React.FC<CardListProps> = ({ cardIds }) => (
   <div>
-    {cardIds.map((cardId) => {
+    {cardIds.map((cardId, index) => {
       const cardDetails = getCardDetails(cardId);
 
       return (
         <div
           key={cardId}
-          className='flex items-center py-3 border-b border-gray-200'
+          className={clsx('flex items-center py-3 ', {
+            'border-b ': index < cardIds.length - 1,
+          })}
         >
           <img
             src={getCardImage(cardId)}
