@@ -34,9 +34,10 @@ export const CardList: React.FC<CardListProps> = ({ cardIds }) => (
               href={cardDetails?.sources?.['vivre-intuitif']}
               target='_blank'
               rel='noopener noreferrer'
+              className='justify-self-end'
             >
               <ExternalLinkIcon
-                className='ml-auto text-gray-500 hover:text-gray-700 cursor-pointer'
+                className='ml-auto cursor-pointer'
                 onClick={() => {
                   window.open(
                     cardDetails?.sources?.['vivre-intuitif'],
