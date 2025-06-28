@@ -49,14 +49,14 @@ export default function Spread() {
 
   return (
     <div className='relative'>
-      <div className='flex flex-col justify-center items-center gap-4 p-4'>
+      <div className=' p-4'>
         {spreads.map((spread) => (
           <div
             key={spread.id}
-            className='text-yellow-50 rounded min-w-xs max-w-xl p-4 border border-yellow-200 flex-1'
+            className='text-yellow-50 rounded mb-4 p-4 border max-w-xl border-yellow-50 mx-auto'
           >
             <Link to={`/spread/${spread.id}`}>
-              <h1 className='scroll-m-20 text-2xl font-semibold tracking-tight '>
+              <h1 className='scroll-m-20 text-2xl  font-semibold tracking-tight '>
                 {spread.name}
               </h1>
             </Link>
