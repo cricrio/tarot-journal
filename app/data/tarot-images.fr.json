@@ -56,7 +56,10 @@
     "suit": "Trump",
     "img": "m04.jpg",
     "keywords": ["autorité", "fiable", "commandement", "conviction", "but"],
-    "id": 4
+    "id": 4,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/majeures/l-empereur/"
+    }
   },
   {
     "name": "The Hierophant",
