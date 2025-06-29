@@ -770,44 +770,22 @@
     "id": 21
   },
   {
-    "name": "Ace of Cups",
+    "name": "As de Coupes",
     "number": "1",
     "arcana": "Minor Arcana",
     "suit": "Cups",
     "img": "c01.jpg",
-    "fortune_telling": [
-      "Romance is in the cards",
-      "A new relationship or marriage is just around the corner",
-      "Prayers are answered"
+    "keywords": [
+      "coeur ouvert",
+      "félicité",
+      "confort",
+      "euphorie",
+      "exubérance"
     ],
-    "keywords": ["intuition", "spirituality", "affection", "motivation"],
-    "meanings": {
-      "light": [
-        "Trusting your feelings",
-        "Opening yourself to spirit",
-        "Accepting and returning affection",
-        "Getting in touch with what motivates you",
-        "Taking advantage of an opportunity to express love to others",
-        "Listening to the still, small voice"
-      ],
-      "shadow": [
-        "Hiding your feelings",
-        "Spurning an opportunity to love or be loved",
-        "Numbing yourself to spiritual yearnings",
-        "Rejecting the counsel of your heart",
-        "Becoming a puppet of your own emotions",
-        "Indulging in hysteria or obsession"
-      ]
-    },
-    "Numerology": "1 (The Origin: the starting point, the seed, opportunity)",
-    "Astrology": "Cancer, Scorpio, Pisces",
-    "Affirmation": "\"I listen to the counsel of my heart.\"",
-    "Questions to Ask": [
-      "What am I feeling right now?",
-      "How would I go about opening myself to spiritual guidance?",
-      "What motivates me the most - pleasure or pain? Why?"
-    ],
-    "id": 22
+    "id": 22,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/coupes/as-de-coupes/"
+    }
   },
   {
     "name": "Two of Cups",
@@ -899,7 +877,10 @@
       "promblèmes imaginés",
       "ingratitude"
     ],
-    "id": 25
+    "id": 25,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/majeures/quatre-de-coupes/"
+    }
   },
   {
     "name": "Five of Cups",
@@ -1189,40 +1170,22 @@
     "id": 32
   },
   {
-    "name": "Knight of Cups",
+    "name": "Cavalier de Coupes",
     "number": "12",
     "arcana": "Minor Arcana",
     "suit": "Cups",
     "img": "c12.jpg",
-    "fortune_telling": [
-      "This card represents a man with an emotional, sensitive personality, likely born between October 13th and November 11th, who wants you to rally around his latest passionate cause"
+    "keywords": [
+      "apparence",
+      "avance",
+      "invitation",
+      "présence",
+      "miroir aux alouettes"
     ],
-    "keywords": ["fervor", "zeal", "moodiness", "illumination"],
-    "meanings": {
-      "light": [
-        "Being deeply committed to a cause",
-        "Giving in to strong emotions, from excitement to depression",
-        "Acting on intuition alone",
-        "Solving problems intuitively",
-        "Believing in and basing decisions on ideals instead of realities",
-        "Bringing intuition or passion to the table"
-      ],
-      "shadow": [
-        "Becoming a fanatic",
-        "Rejecting information that suggests your intuitions are misguided",
-        "Allowing your emotions to control you",
-        "Giving in to jealousy, confrontation, and peer pressure",
-        "Hiding or ignoring intuitive insights"
-      ]
-    },
-    "Elemental": "Air of Water.",
-    "Affirmation": "\"I translate my passions into actions.\"",
-    "Questions to Ask": [
-      "How prone to emotional extremes are you?",
-      "What's the difference in driving passion and blind zeal?",
-      "How can you inspire others without inciting a riot?"
-    ],
-    "id": 33
+    "id": 33,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/coupes/cavalier-de-coupe/"
+    }
   },
   {
     "name": "Queen of Cups",
@@ -1602,44 +1565,16 @@
     "id": 43
   },
   {
-    "name": "Nine of Swords",
+    "name": "Neuf d'Épées",
     "number": "9",
     "arcana": "Minor Arcana",
     "suit": "Swords",
     "img": "s09.jpg",
-    "fortune_telling": [
-      "If you take the action you're considering now, you'll be sorry in the future"
-    ],
-    "keywords": ["remorse", "worry", "distraught", "conclusion"],
-    "meanings": {
-      "light": [
-        "Refusing to worry about what you cannot control",
-        "Rejecting anxiety",
-        "Judging your own performance with kindness and gentleness",
-        "Using meditation to quiet a troubled mind",
-        "Confronting nightmares and fears",
-        "Drawing a conclusion and putting an issue out of your mind"
-      ],
-      "shadow": [
-        "Torturing yourself with regrets",
-        "Second-guessing your every move",
-        "Beating yourself up for your mistakes",
-        "Depression",
-        "Obsessing on errors and overlooked details",
-        "Refusing to handle stress in healthy ways",
-        "Ruining your ability to appreciate the present by dwelling on the past",
-        "Debating irreversible decisions"
-      ]
-    },
-    "Numerology": "9 (The Completion: fullness, readiness, ripeness)",
-    "Astrology": "Mars in Gemini",
-    "Affirmation": "\"I do not worry about what I cannot control.\"",
-    "Questions to Ask": [
-      "What role does worry play in your current situation?",
-      "To what other ends might you devote the energy you're giving to anxiety?",
-      "How can you know when it's time to stop thinking and start acting?"
-    ],
-    "id": 44
+    "keywords": ["deuil", "effondrement", "rater", "ruse", "hypocrisie"],
+    "id": 44,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/epees/neuf-epee/"
+    }
   },
   {
     "name": "Ten of Swords",
@@ -2237,41 +2172,16 @@
     "id": 60
   },
   {
-    "name": "Knight of Wands",
+    "name": "Cavalier de Bâtons",
     "number": "12",
     "arcana": "Minor Arcana",
     "suit": "Wands",
     "img": "w12.jpg",
-    "fortune_telling": [
-      "This card represents a man with a bold, passionate personality, likely born between July 12th and August 11th, who wants to sweep you off your feet"
-    ],
-    "keywords": ["boldness", "bravado", "passion", "persuasion", "advocacy"],
-    "meanings": {
-      "light": [
-        "Charging ahead",
-        "Making rapid progress",
-        "Refusing limits",
-        "Dazzling those around you with your wit and charm",
-        "Convincing others of your right to leadership",
-        "Convincing others to follow you",
-        "Being a catalyst for change"
-      ],
-      "shadow": [
-        "Blundering forward with inadequate skill or information",
-        "Running roughshod over the feelings of others",
-        "Using sex appeal to manipulate others",
-        "Forcing your leadership or ideology on others",
-        "Beginning many projects without finishing any"
-      ]
-    },
-    "Elemental": "Air of Fire.",
-    "Affirmation": "\"I can lead the way to success.\"",
-    "Questions to Ask": [
-      "To what extent have you defined your ultimate goal?",
-      "What's the fastest way to get the job done? Is this necessarily the best way?",
-      "How long has it been since you looked back to see if others really are following your lead?"
-    ],
-    "id": 61
+    "keywords": ["exode", "bousculade", "passage", "jeune homme", "extraverti"],
+    "id": 61,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/batons/cavalier-de-baton/"
+    }
   },
   {
     "name": "Queen of Wands",
