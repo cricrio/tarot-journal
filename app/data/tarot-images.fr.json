@@ -2374,36 +2374,16 @@
     "arcana": "Minor Arcana",
     "suit": "Pentacles",
     "img": "p04.jpg",
-    "fortune_telling": ["A rainy day is coming—it's time to save"],
-    "keywords": ["protection", "conservation", "preservation", "safety"],
-    "meanings": {
-      "light": [
-        "Saving for a rainy day",
-        "Fasting as part of a spiritual practice",
-        "Dieting in an effort to improve your body",
-        "Abstaining from sex as a way of honoring a spiritual tradition or personal promise",
-        "Being financially conservative",
-        "Establishing a trust fund",
-        "Opening a savings account"
-      ],
-      "shadow": [
-        "Being stingy",
-        "Refusing to spend money that needs to be spent",
-        "Withholding sex from your partner",
-        "Taking care of your own needs exclusively, without regard for the needs of others",
-        "Spending a dollar to save a penny",
-        "Failing to be a good manager of the blessings you've been given"
-      ]
-    },
-    "Numerology": "4 (The Status Quo: stability, equality, persistence)",
-    "Astrology": "Sun in Capricorn",
-    "Affirmation": "\"I use my resources wisely.\"",
-    "Questions to Ask": [
-      "What factors determine how conservative or generous you are?",
-      "What kinds of things must be preserved at all costs?",
-      "When is greediness or stinginess a good trait to have? When might generosity work against you?"
+    "keywords": [
+      "se protéger, ne pas tout donner",
+      "investir pour soi, sur soi",
+      "rechercher la sécurité et la stabilité",
+      "peur du changement"
     ],
-    "id": 67
+    "id": 67,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/deniers/quatre-de-denier/"
+    }
   },
   {
     "name": "Five of Pentacles",
@@ -2486,43 +2466,22 @@
     "id": 69
   },
   {
-    "name": "Seven of Pentacles",
+    "name": "Sept de Pentacles",
     "number": "7",
     "arcana": "Minor Arcana",
     "suit": "Pentacles",
     "img": "p07.jpg",
-    "fortune_telling": [
-      "Things won't work out as expected",
-      "Pick up the pieces and prepare to move on"
+    "keywords": [
+      "marchandage",
+      "négociation",
+      "querelle",
+      "concience claire",
+      "ingénuité"
     ],
-    "keywords": ["assessment", "evaluation", "re-evaluation", "reflection"],
-    "meanings": {
-      "light": [
-        "Measuring progress toward your goal",
-        "Looking at results with an eye toward improving performance",
-        "Asking, \"How happy am I?\"",
-        "Coming up with ideas for improving your health or prosperity",
-        "Deciding it's time for a change",
-        "Expressing an honest opinion"
-      ],
-      "shadow": [
-        "Becoming distracted by melancholy thoughts",
-        "Longing for \"the good old days\"",
-        "Beating yourself up over lost opportunities",
-        "Judging your own work harshly",
-        "Holding others to inappropriate standards",
-        "Refusing to take part in a project, then whining about the quality of the outcome"
-      ]
-    },
-    "Numerology": "7 (The Motive: imagination, inner work, psychology)",
-    "Astrology": "Saturn in Taurus",
-    "Affirmation": "\"To stay on target, I measure my progress.\"",
-    "Questions to Ask": [
-      "To what extent have I fulfilled my own expectations?",
-      "What are the terms of success?",
-      "How can I be happier with the progress I've made?"
-    ],
-    "id": 70
+    "id": 70,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/deniers/sept-de-denier/"
+    }
   },
   {
     "name": "Eight of Pentacles",
@@ -2567,79 +2526,41 @@
     "id": 71
   },
   {
-    "name": "Nine of Pentacles",
+    "name": "Neuf de Pentacles",
     "number": "9",
     "arcana": "Minor Arcana",
     "suit": "Pentacles",
     "img": "p09.jpg",
-    "fortune_telling": [
-      "Until you appreciate what you have, you won't have any luck getting more"
+    "keywords": [
+      "réalisation",
+      "sécurité",
+      "succès",
+      "perspicacité",
+      "sagesse"
     ],
-    "keywords": ["training", "discipline", "confidence", "enough"],
-    "meanings": {
-      "light": [
-        "Investing time in learning or teaching a difficult task",
-        "Restraining yourself from physical or financial extremes",
-        "Making sacrifices as a way of achieving larger goals",
-        "Breaking a complex task down into simple steps",
-        "Wanting what you have",
-        "Knowing the difference between needs and wants"
-      ],
-      "shadow": [
-        "Being assigned to a task without being trained to perform it",
-        "Pursuing a position for which you are not qualified",
-        "Disregarding requirements",
-        "Refusing to dedicate adequate time or attention when learning about something or someone new",
-        "Always craving more"
-      ]
-    },
-    "Numerology": "9 (The Completion: fullness, readiness, ripeness)",
-    "Astrology": "Venus in Virgo",
-    "Affirmation": "\"I know enough to be confident in my decisions.\"",
-    "Questions to Ask": [
-      "If you could not have what you want, how would you make do?",
-      "Could you make a complex task easier by breaking it down into smaller steps?",
-      "How patient are you during the learning process? With yourself? With others?"
-    ],
-    "id": 72
+    "id": 72,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/deniers/neuf-de-denier/"
+    }
   },
   {
-    "name": "Ten of Pentacles",
+    "name": "Dix de Pentacles",
     "number": "10",
     "arcana": "Minor Arcana",
     "suit": "Pentacles",
     "img": "p10.jpg",
-    "fortune_telling": [
-      "Big money is in the near future",
-      "Expect a powerful blessing to come your way"
+    "keywords": [
+      "richesse",
+      "famille",
+      "héritage",
+      "sécurité",
+      "cycles",
+      "génération"
     ],
-    "keywords": ["wealth", "abundance", "acquisition", "greed"],
-    "meanings": {
-      "light": [
-        "Celebrating your physical and financial blessings",
-        "Realizing how lucky or how blessed you are",
-        "Being satisfied with your physical and financial achievements",
-        "Taking best advantage of \"times of plenty\"",
-        "Enjoying a feast",
-        "Showering friends or family with gifts"
-      ],
-      "shadow": [
-        "Spending all of your money on extravagant gifts and possessions",
-        "Trying too hard to impress others with your wealth or physique",
-        "Giving an inappropriately expensive gift as a means of currying favor",
-        "Obsessing on matters of weight, health, or finance",
-        "Always asking, \"What's in it for me?\""
-      ]
-    },
-    "Numerology": "10 (The End: finality, completion, exhaustion)",
-    "Astrology": "Mercury in Virgo",
-    "Affirmation": "\"I keep physical and financial matters in perspective.\"",
-    "Questions to Ask": [
-      "How much stuff do I really need?",
-      "How do I feel about wealth and abundance? How do I define these terms?",
-      "How might shedding some possessions open room for growth?"
-    ],
-    "id": 73
+    "id": 73,
+    "sources": {
+      "vivre-intuitif": "https://vivre-intuitif.com/apprendre-le-tarot/signification/deniers/dix-de-denier/"
+    }
   },
   {
     "name": "Page of Pentacles",
