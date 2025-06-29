@@ -65,6 +65,7 @@ export default function Spread() {
         {spread.name || 'Untitled Spread'}
       </h1>
       <CardCanvas
+        ids={cardIds}
         cards={
           <Grid
             ids={cardIds}

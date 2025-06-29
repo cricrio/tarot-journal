@@ -1,5 +1,4 @@
 import { useThree, type Viewport } from '@react-three/fiber';
-import { Card } from './card';
 import type { ReactElement } from 'react';
 import { ratios } from '~/config';
 
@@ -12,28 +11,38 @@ type Dimensions = {
   height: number;
 };
 
-function getDimensions(
+export function getDimensions(
   numberPerRow: number,
   numberPerColumn: number,
   viewport: Viewport
 ): Dimensions {
-  const rowScale = viewport.width / (numberPerRow * (ratios.x + margin));
-  const columnScale =
-    (viewport.height * 0.9) / (numberPerColumn * (ratios.y + margin));
+  const rowScale = viewport.width / (numberPerRow * (1 + margin));
+  const columnScale = viewport.height / (numberPerColumn * (1 + margin));
 
-  const minScale = Math.min(rowScale, columnScale);
-  const width = Math.min(minScale * ratios.x, maxWidth);
-  const height = (width * ratios.y) / ratios.x;
+  // if (rowScale < columnScale) {
+  //   return {
+  //     width: rowScale,
+  //     height: rowScale * ratios.y,
+  //   };
+  // }
 
   return {
-    width,
-    height,
+    width: columnScale / ratios.y,
+    height: columnScale,
   };
 }
 
-function getRows(ids: string[], count: number): string[][] {
+export function getRows(ids: string[]): string[][] {
+  if (ids.length <= numberOfCardsperRow) {
+    return [ids];
+  }
+
+  if (ids.length == 5) {
+    return [[ids[3], ids[4]], [ids[2]], [ids[0], ids[1]]];
+  }
+
   return ids.reduce((acc: string[][], id, i) => {
-    if (i % count === 0) {
+    if (i % numberOfCardsperRow === 0) {
       acc = [[id], ...acc];
     } else {
       acc[0].push(id);
@@ -42,7 +51,7 @@ function getRows(ids: string[], count: number): string[][] {
   }, []);
 }
 
-function getPosition(index: number, distance: number, count: number) {
+export function getPosition(index: number, distance: number, count: number) {
   return index * (distance + margin) - ((count - 1) * (distance + margin)) / 2;
 }
 
@@ -58,25 +67,7 @@ export function Grid({
 }) {
   const { viewport } = useThree();
 
-  if (ids.length <= numberOfCardsperRow) {
-    const dimensions = getDimensions(3, 1, viewport);
-    return renderRow([{ ids, y: 0 }], dimensions);
-  }
-
-  if (ids.length == 5) {
-    const dimensions = getDimensions(3, 3, viewport);
-    const rows = [[ids[3], ids[4]], [ids[2]], [ids[0], ids[1]]];
-    
-    return renderRow(
-      rows.map((r, index) => ({
-        ids: r,
-        y: getPosition(index, dimensions.height, rows.length),
-      })),
-      dimensions
-    );
-  }
-
-  const rows = getRows(ids, numberOfCardsperRow);
+  const rows = getRows(ids);
   const dimensions = getDimensions(3, rows.length, viewport);
 
   return renderRow(
