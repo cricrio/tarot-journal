@@ -16,15 +16,24 @@ export function getDimensions(
   numberPerColumn: number,
   viewport: Viewport
 ): Dimensions {
-  const rowScale = viewport.width / (numberPerRow * (1 + margin));
   const columnScale = viewport.height / (numberPerColumn * (1 + margin));
+  const width = columnScale / ratios.y;
 
-  // if (rowScale < columnScale) {
-  //   return {
-  //     width: rowScale,
-  //     height: rowScale * ratios.y,
-  //   };
-  // }
+  if ((width + margin) * numberPerRow < viewport.width) {
+    // If the width of the cards fits in the viewport, use that
+    return {
+      width: width,
+      height: columnScale,
+    };
+  }
+
+  const rowScale = viewport.width / (numberPerRow * (1 + margin));
+  if (rowScale < columnScale) {
+    return {
+      width: rowScale,
+      height: rowScale * ratios.y,
+    };
+  }
 
   return {
     width: columnScale / ratios.y,
@@ -56,21 +65,20 @@ export function getPosition(index: number, distance: number, count: number) {
 }
 
 export function Grid({
-  ids,
-  renderRow,
+  rows,
+  render,
 }: {
-  ids: string[];
-  renderRow: (
+  rows: string[][];
+  render: (
     rows: { ids: string[]; y: number }[],
     dimensions: Dimensions
   ) => ReactElement[];
 }) {
   const { viewport } = useThree();
 
-  const rows = getRows(ids);
   const dimensions = getDimensions(3, rows.length, viewport);
 
-  return renderRow(
+  return render(
     rows.map((r, index) => ({
       ids: r,
       y: getPosition(index, dimensions.height, rows.length),

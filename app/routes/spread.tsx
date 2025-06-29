@@ -2,12 +2,10 @@ import type { Route } from './+types/edit';
 
 import { useParams } from 'react-router';
 
-import { Grid, Row } from '~/components/cards/canvas-list';
 import { CardCanvas } from '~/components/cards/canvas';
 import { CardDetails } from '~/components/cards/details';
 
 import { useEffect, useRef, useState } from 'react';
-import { Card } from '~/components/cards/card';
 import { Drawer, DrawerContent } from '~/components/ui/drawer';
 import { getEntry } from '~/database/db';
 import CardList from '~/components/cards/list';
@@ -64,33 +62,7 @@ export default function Spread() {
       <h1 className='text-white text-2xl mb-4 text-center'>
         {spread.name || 'Untitled Spread'}
       </h1>
-      <CardCanvas
-        ids={cardIds}
-        cards={
-          <Grid
-            ids={cardIds}
-            renderRow={(rows, dimensions) =>
-              rows.map(({ ids, y }) => (
-                <Row
-                  key={ids.join('-')}
-                  y={y}
-                  items={ids}
-                  dimensions={dimensions}
-                  renderItem={({ x, id }) => (
-                    <Card
-                      key={id}
-                      position={[x, y, 0]}
-                      id={id}
-                      dimensions={dimensions}
-                      onDoubleClick={() => onCardDoubleClick(id)}
-                    />
-                  )}
-                />
-              ))
-            }
-          />
-        }
-      />
+      <CardCanvas ids={cardIds} />
       <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
       <CardList cardIds={cardIds} />
       {selectedCard && (

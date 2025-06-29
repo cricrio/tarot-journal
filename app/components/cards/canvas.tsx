@@ -1,21 +1,14 @@
 import { CameraControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import {
-  use,
-  useEffect,
-  useRef,
-  type HTMLAttributes,
-  type ReactElement,
-} from 'react';
+import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
-import { getRows } from './canvas-list';
+import { getRows, Grid, Row } from './canvas-list';
+import { Card } from './card';
 
 export function CardCanvas({
-  cards,
   target,
   ids,
 }: {
-  cards: ReactElement;
   target?: [x: number, y: number, z: number];
   ids: string[];
 }) {
@@ -24,6 +17,7 @@ export function CardCanvas({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const rows = getRows(ids);
+
   useEffect(() => {
     if (target && cameraControlsRef.current) {
       if (target) {
@@ -61,7 +55,21 @@ export function CardCanvas({
         height: Math.max(200 * rows.length, document.body.clientHeight * 0.5),
       }}
     >
-      {cards}
+      <Grid
+        rows={rows}
+        render={(rows, dimensions) =>
+          rows.map(({ ids, y }) => (
+            <Row
+              y={y}
+              items={ids}
+              dimensions={dimensions}
+              renderItem={({ x, id }) => (
+                <Card position={[x, y, 0]} id={id} dimensions={dimensions} />
+              )}
+            />
+          ))
+        }
+      />
     </Canvas>
   );
 }

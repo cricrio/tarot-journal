@@ -59,29 +59,7 @@ export default function Edit() {
           onChange={(event) => setName(event.target.value)}
         />
       </div>
-      <CardCanvas
-        cards={
-          <Grid
-            ids={cardIds}
-            renderRow={(rows, dimensions) =>
-              rows.map(({ ids, y }) => (
-                <Row
-                  y={y}
-                  items={ids}
-                  dimensions={dimensions}
-                  renderItem={({ x, id }) => (
-                    <Card
-                      position={[x, y, 0]}
-                      id={id}
-                      dimensions={dimensions}
-                    />
-                  )}
-                />
-              ))
-            }
-          />
-        }
-      />
+      <CardCanvas ids={cardIds} />
       <div className='flex flex-col justify-center gap-4'>
         <AddCard cardIds={cardIds} onAddCard={onAddCard} />
         <Button className='w-full mt-4' onClick={onSave}>
