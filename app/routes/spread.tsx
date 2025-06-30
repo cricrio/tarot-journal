@@ -1,6 +1,6 @@
 import type { Route } from './+types/edit';
 
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 import { CardCanvas } from '~/components/cards/canvas';
 import { CardDetails } from '~/components/cards/details';
@@ -9,6 +9,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Drawer, DrawerContent } from '~/components/ui/drawer';
 import { getEntry } from '~/database/db';
 import CardList from '~/components/cards/list';
+import { Button } from '~/components/ui/button';
+import { encrypt } from '~/lib/share';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -62,6 +64,9 @@ export default function Spread() {
       <h1 className='text-white text-2xl mb-4 text-center'>
         {spread.name || 'Untitled Spread'}
       </h1>
+      <Link to={`/share/?enc=${encrypt(spread)}`} target='_blank'>
+        Partager
+      </Link>
       <CardCanvas ids={cardIds} />
       <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
       <CardList cardIds={cardIds} />

@@ -46,7 +46,6 @@ export function CardCanvas({
     console.log({ width: canvasRef.current?.width });
   }, [canvasRef.current]);
 
-  console.log('Canvas width:', document.body.clientWidth);
 
   return (
     <Canvas
