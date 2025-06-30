@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
 import { LucideCross, LucidePlus } from 'lucide-react';
+import { titleEnv } from '~/lib/utils';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'New React Router App' },
-    { name: 'description', content: 'Welcome to React Router!' },
+    { title: titleEnv('Mon journal de tarot') },
+    { name: 'description', content: 'Garde trace de trace de tes tirages' },
   ];
 }
 

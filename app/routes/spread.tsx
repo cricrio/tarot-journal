@@ -11,11 +11,12 @@ import { getEntry } from '~/database/db';
 import CardList from '~/components/cards/list';
 import { Button } from '~/components/ui/button';
 import { encrypt } from '~/lib/share';
+import { titleEnv } from '~/lib/utils';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'New React Router App' },
-    { name: 'description', content: 'Welcome to React Router!' },
+    { title: titleEnv('Mon journal de tarot') },
+    { name: 'description', content: 'Garde trace de trace de tes tirages' },
   ];
 }
 
@@ -61,12 +62,16 @@ export default function Spread() {
 
   return (
     <div className='h-full  p-4 gap-8'>
-      <h1 className='text-white text-2xl mb-4 text-center'>
-        {spread.name || 'Untitled Spread'}
-      </h1>
-      <Link to={`/share/?enc=${encrypt(spread)}`} target='_blank'>
-        Partager
-      </Link>
+      <div className='flex justify-center gap-4 items-center'>
+        <h1 className='text-white text-2xl'>
+          {spread.name || 'Untitled Spread'}
+        </h1>
+        <Button asChild>
+          <Link to={`/share/?enc=${encrypt(spread)}`} target='_blank'>
+            Partager
+          </Link>
+        </Button>
+      </div>
       <CardCanvas ids={cardIds} />
       <section className='max-w-3xl mx-auto'>
         <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>

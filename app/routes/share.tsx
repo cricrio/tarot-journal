@@ -8,6 +8,14 @@ import { LucideCross, LucidePlus } from 'lucide-react';
 import { decrypt } from '~/lib/share';
 import { CardCanvas } from '~/components/cards/canvas';
 import CardList from '~/components/cards/list';
+import { titleEnv } from '~/lib/utils';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: titleEnv('Mon journal de tarot') },
+    { name: 'description', content: 'Garde trace de trace de tes tirages' },
+  ];
+}
 
 export default function Share() {
   const [searchParams] = useSearchParams();
@@ -15,7 +23,7 @@ export default function Share() {
 
   if (!enc) {
     return (
-      <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
+      <div className='w-full h-screen p-4 gap-8'>
         <h1 className='text-white'>Aucun code de partage fourni.</h1>
       </div>
     );
@@ -23,8 +31,8 @@ export default function Share() {
   const spread = decrypt(enc);
   console.log('Decrypted spread:', spread);
   return (
-    <div className='h-full  p-4 gap-8'>
-      <h1 className='text-white text-2xl mb-4 text-center'>
+    <div className='h-full p-4 gap-8'>
+      <h1 className='text-white text-2xl text-center'>
         {spread.name || 'Untitled Spread'}
       </h1>
       <CardCanvas ids={spread.cards} />
