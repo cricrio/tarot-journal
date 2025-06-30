@@ -1,5 +1,6 @@
 import { CameraControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+import { useWindowSize } from '@uidotdev/usehooks';
 import { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
 import { getRows, Grid, Row } from './canvas-list';
@@ -15,6 +16,8 @@ export function CardCanvas({
   console.log(target);
   const cameraControlsRef = useRef<CameraControls>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { height } = useWindowSize();
+  const screenHeight = height || 350;
 
   const rows = getRows(ids);
 
@@ -46,15 +49,11 @@ export function CardCanvas({
     console.log({ width: canvasRef.current?.width });
   }, [canvasRef.current]);
 
-
   return (
     <Canvas
       ref={canvasRef}
       style={{
-        height: Math.max(
-          200 * rows.length,
-          document?.body?.clientHeight ?? 400 * 0.5
-        ),
+        height: Math.max(200 * rows.length, screenHeight * 0.5),
       }}
     >
       <Grid
