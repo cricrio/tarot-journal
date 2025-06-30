@@ -20,7 +20,7 @@ export function CardCanvas({
 
   const rows = getRows(ids);
   const canvasMaxHeight = height ? height * 0.5 : 200;
-  const canvasHeight = Math.max(200 * rows.length, canvasMaxHeight);
+  const canvasHeight = Math.max(150 * rows.length, canvasMaxHeight);
 
   useEffect(() => {
     if (target && cameraControlsRef.current) {

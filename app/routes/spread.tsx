@@ -68,8 +68,10 @@ export default function Spread() {
         Partager
       </Link>
       <CardCanvas ids={cardIds} />
-      <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
-      <CardList cardIds={cardIds} />
+      <section className='max-w-3xl mx-auto'>
+        <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
+        <CardList cardIds={cardIds} />
+      </section>
       {selectedCard && (
         <Drawer
           open={!!selectedCard}

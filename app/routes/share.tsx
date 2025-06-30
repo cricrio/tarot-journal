@@ -27,10 +27,11 @@ export default function Share() {
       <h1 className='text-white text-2xl mb-4 text-center'>
         {spread.name || 'Untitled Spread'}
       </h1>
-
       <CardCanvas ids={spread.cards} />
-      <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
-      <CardList cardIds={spread.cards} />
+      <section className='max-w-3xl mx-auto'>
+        <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
+        <CardList cardIds={spread.cards} />
+      </section>
     </div>
   );
 }
