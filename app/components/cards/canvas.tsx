@@ -51,7 +51,10 @@ export function CardCanvas({
     <Canvas
       ref={canvasRef}
       style={{
-        height: Math.max(200 * rows.length, document.body.clientHeight * 0.5),
+        height: Math.max(
+          200 * rows.length,
+          document?.body?.clientHeight ?? 400 * 0.5
+        ),
       }}
     >
       <Grid
