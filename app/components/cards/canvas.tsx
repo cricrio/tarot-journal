@@ -17,9 +17,10 @@ export function CardCanvas({
   const cameraControlsRef = useRef<CameraControls>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { height } = useWindowSize();
-  const screenHeight = height || 350;
 
   const rows = getRows(ids);
+  const canvasMaxHeight = height ? height * 0.5 : 200;
+  const canvasHeight = Math.max(200 * rows.length, canvasMaxHeight);
 
   useEffect(() => {
     if (target && cameraControlsRef.current) {
@@ -53,7 +54,7 @@ export function CardCanvas({
     <Canvas
       ref={canvasRef}
       style={{
-        height: Math.max(200 * rows.length, screenHeight * 0.5),
+        height: canvasHeight,
       }}
     >
       <Grid
