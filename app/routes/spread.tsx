@@ -1,17 +1,18 @@
-import type { Route } from './+types/edit';
+import type { Route } from './+types/spread';
 
 import { Link, useParams } from 'react-router';
 
 import { CardCanvas } from '~/components/cards/canvas';
-import { CardDetails } from '~/components/cards/details';
 
-import { useEffect, useRef, useState } from 'react';
-import { Drawer, DrawerContent } from '~/components/ui/drawer';
-import { getEntry } from '~/database/db';
-import CardList from '~/components/cards/list';
+import { useEffect, useState } from 'react';
+import { CardList } from '~/components/cards/list';
 import { Button } from '~/components/ui/button';
 import { encrypt } from '~/lib/share';
 import { titleEnv } from '~/lib/utils';
+import { Tabs, TabsContent, TabsList } from '@radix-ui/react-tabs';
+import { TabsTrigger } from '~/components/layout/tab-trigger';
+import { NotesEditor } from '~/components/notes/editor';
+import { getSpread, type Spread } from '~/database/spread';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -20,43 +21,17 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Spread() {
-  const { id } = useParams();
-  const [spread, setSpread] = useState();
-  const [error, setError] = useState(null);
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
-  const onCardDoubleClick = (id: string) => setSelectedCard(id);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!id) return;
-      try {
-        const spread = await getEntry(Number(id));
-        console.log('Fetched spread:', spread);
-        setSpread(spread);
-      } catch (error) {
-        setError(error.message);
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, [id]);
-
-  if (error) {
-    return (
-      <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
-        <h1 className='text-red-500'>Error: {error}</h1>
-      </div>
-    );
+export async function clientLoader({ params }: Route.ClientLoaderArgs) {
+  const { id } = params;
+  if (!id) {
+    throw new Error('No spread ID provided.');
   }
+  const spread = await getSpread(Number(id));
+  return { spread };
+}
 
-  if (!spread) {
-    return (
-      <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
-        Loading...
-      </div>
-    );
-  }
+export default function Spread({ loaderData }: Route.ComponentProps) {
+  const { spread } = loaderData;
 
   const cardIds = spread.cards;
 
@@ -74,19 +49,19 @@ export default function Spread() {
       </div>
       <CardCanvas ids={cardIds} />
       <section className='max-w-3xl mx-auto'>
-        <h2 className='text-white text-lg mb-2'>Liste des cartes</h2>
-        <CardList cardIds={cardIds} />
+        <Tabs defaultValue='cards'>
+          <TabsList className='flex justify-center gap-3 mb-4'>
+            <TabsTrigger value='cards'>Cartes</TabsTrigger>
+            <TabsTrigger value='notes'>Notes</TabsTrigger>
+          </TabsList>
+          <TabsContent value='cards'>
+            <CardList cardIds={spread.cards} />
+          </TabsContent>
+          <TabsContent value='notes'>
+            <NotesEditor spreadId={spread.id} />
+          </TabsContent>
+        </Tabs>
       </section>
-      {selectedCard && (
-        <Drawer
-          open={!!selectedCard}
-          onOpenChange={() => setSelectedCard(null)}
-        >
-          <DrawerContent className='overflow-y-auto'>
-            <CardDetails id={selectedCard} />
-          </DrawerContent>
-        </Drawer>
-      )}
     </div>
   );
 }

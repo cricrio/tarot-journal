@@ -4,7 +4,6 @@ import { ratios } from '~/config';
 
 const margin = 0.1;
 const numberOfCardsperRow = 3;
-const maxWidth = 1.5;
 
 type Dimensions = {
   width: number;

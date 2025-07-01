@@ -1,11 +1,11 @@
 import type { Route } from './+types/home';
 
-import { getEntries } from '~/database/db';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
-import { LucideCross, LucidePlus } from 'lucide-react';
+import { LucidePlus } from 'lucide-react';
 import { titleEnv } from '~/lib/utils';
+import { getAllSpreads, type Spread } from '~/database/spread';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,40 +14,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Spread() {
-  const [spreads, setSpreads] = useState();
-  const [error, setError] = useState(null);
+export async function clientLoader() {
+  const spreads = await getAllSpreads();
+  return { spreads };
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const spreads = await getEntries();
-        console.log('Fetched spread:', spreads);
-        setSpreads(spreads);
-      } catch (error) {
-        setError(error.message);
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (error) {
-    return (
-      <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
-        <h1 className='text-red-500'>Error: {error}</h1>
-      </div>
-    );
-  }
-
-  if (!spreads) {
-    return (
-      <div className='w-full h-screen bg-indigo-900 flex p-4 gap-8'>
-        Loading...
-      </div>
-    );
-  }
-
+export default function Spreads({ loaderData }: Route.ComponentProps) {
+  const { spreads } = loaderData;
   return (
     <div className='relative'>
       <div className=' p-4'>

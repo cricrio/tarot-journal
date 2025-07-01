@@ -47,4 +47,3 @@ export const CardList: React.FC<CardListProps> = ({ cardIds }) =>
     );
   });
 
-export default CardList;

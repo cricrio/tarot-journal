@@ -10,7 +10,7 @@ import { Button } from '~/components/ui/button';
 import { addEntry } from '~/database/db';
 import { useState } from 'react';
 import { Card } from '~/components/cards/card';
-
+import { addSpread } from '~/database/spread';
 
 export default function Edit() {
   const navigate = useNavigate();
@@ -37,7 +37,8 @@ export default function Edit() {
 
   const onSave = async () => {
     try {
-      const spreadId = await addEntry({ cards: cardIds, name });
+      const spreadId = await addSpread({ cards: cardIds, name });
+
       console.log('Entry saved:', spreadId, `/spread/${spreadId}`);
       navigate(`/spread/${spreadId}`);
     } catch (error) {

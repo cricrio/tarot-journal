@@ -4,7 +4,7 @@ export const encrypt = (spread: { cards: string[]; name: string }): string => {
   return lzString.compressToEncodedURIComponent(JSON.stringify(spread));
 };
 
-export const decrypt = (encryptedText: string): string => {
+export const decrypt = (encryptedText: string) => {
   return JSON.parse(
     lzString.decompressFromEncodedURIComponent(encryptedText) || '{}'
   );
