@@ -6,7 +6,7 @@ type NoteInput = {
   spreadId: Spread['id'];
 };
 
-type Note = Node & NoteInput;
+export type Note = Node & NoteInput;
 
 export async function addNote(note: NoteInput): Promise<IDBValidKey> {
   return addEntry<NoteInput>('notes', note);

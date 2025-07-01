@@ -1,5 +1,5 @@
 const DB_NAME = 'TarotJournalDB';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 const CREATED_AT_INDEX = 'createdAt';
 const STORE_NAMES = ['speads', 'notes'] as const;
@@ -16,6 +16,7 @@ export type Node = {
 export type DBError = {
   message: string;
 };
+
 export async function getDatabaseInstance(): Promise<IDBDatabase> {
   if (dbInstance) {
     return dbInstance;

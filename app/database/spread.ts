@@ -12,13 +12,12 @@ type SpreadInput = {
   name: string;
   description?: string;
   cards: string[];
-  notes: string[];
 };
 
 export type Spread = Node & SpreadInput;
 
 export function addSpread(spread: SpreadInput) {
-  return addEntry<SpreadInput>(STORE_NAME, { ...spread, notes: [] });
+  return addEntry<SpreadInput>(STORE_NAME, spread);
 }
 
 export function getSpread(spreadId: Spread['id']): Promise<Spread> {
